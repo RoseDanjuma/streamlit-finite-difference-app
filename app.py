@@ -10,7 +10,7 @@ st.write("""This interactive tool helps you understand  **forward**, **backward*
 # Sidebar for user inputs
 st.sidebar.header("Settings")
 
-func_choice = st.sidebar.selectbox("Choose a function f(x):", ["sin(x)"], "cos(x)" "exp(x)", "x^2", "x^3"])
+func_choice = st.sidebar.selectbox("Choose a function f(x):", ["sin(x)"], "cos(x)" "exp(x)", "x^2", "x^3")
 x0 = st.sidebar.number_input("Point x_0:", value=1.0)
 h = st.sidebar.number_input("Step size h:", value=0.1, min_value=0.001, max_value=0.5, step=0.001)
 
@@ -75,7 +75,7 @@ def f(x):
         uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
 
         if uploaded_file:
-        matrix = np.loadtxt(uploaded_file, delimiter=",")
+          matrix = np.loadtxt(uploaded_file, delimiter=",")
         st.write("### Uploaded Matrix")
         st.write(matrix)
 
@@ -89,16 +89,16 @@ def f(x):
 
         # --- COMPUTE DIFFERENCE ---
         def forward_diff(mat, h):
-        return (mat[1:] - mat[:-1]) / h
+          return (mat[1:] - mat[:-1]) / h
 
         def backward_diff(mat, h):
-        return (mat[1:] - mat[:-1]) / h  # same shape, but logically backward
+          return (mat[1:] - mat[:-1]) / h  # same shape, but logically backward
 
         def central_diff(mat, h):
-        return (mat[2:] - mat[:-2]) / (2*h)
+          return (mat[2:] - mat[:-2]) / (2*h)
 
         if st.button("Compute"):
-        if method == "Forward Difference":
+         if method == "Forward Difference":
             result = forward_diff(matrix, h)
         elif method == "Backward Difference":
             result = backward_diff(matrix, h)
@@ -113,7 +113,7 @@ def f(x):
         plt.figure(figsize=(8, 5))
         plt.plot(x, true_derivative_value, label='True Derivative', color='green')
         plt.plot(x, derivative_value, label='Numerical Approximation', color='orange')
-        plt.plot(x, error, label='Absolute Error', color='red'))
+        plt.plot(x, error, label='Absolute Error', color='red')
         plt.legend()
         st.pyplot(plt)
 
